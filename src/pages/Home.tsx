@@ -3,9 +3,8 @@ import Hero from '../components/Hero';
 import PlatformOverview from '../components/PlatformOverview';
 import AgentTypes from '../components/AgentTypes';
 import UseCases from '../components/UseCases';
-import DemoSection from '../components/DemoSection';
+import VideoSection from '../components/VideoSection';
 import SocialProof from '../components/SocialProof';
-import PricingSection from '../components/PricingSection';
 import FinalCTA from '../components/FinalCTA';
 
 const Home = () => {
@@ -15,7 +14,7 @@ const Home = () => {
       <PlatformOverview />
       <AgentTypes />
       <UseCases />
-      <DemoSection />
+      <VideoSection />
       <SocialProof />
       <FinalCTA />
     </div>

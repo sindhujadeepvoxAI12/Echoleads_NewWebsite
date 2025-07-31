@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Linkedin, Twitter, Youtube, Facebook } from 'lucide-react';
+import { Linkedin, Twitter, Youtube, Facebook,Instagram } from 'lucide-react';
 import echoleadsLogo from '../assets/echoleads_logo.jpeg';
 
 const Footer = () => {
@@ -10,10 +10,10 @@ const Footer = () => {
       links: [
         { name: 'About Us', href: '/company/about' },
         { name: 'Careers', href: '#' },
-        { name: 'Press', href: '#' },
         { name: 'Contact', href: '/contact' },
-        { name: 'Privacy Policy', href: '#' },
-        { name: 'Terms of Service', href: '#' }
+        { name: 'Privacy Policy', href: '/privacy-policy' },
+        { name: 'Refund Policy', href: '/refund-policy' },
+        { name: 'Terms of Service', href: '/terms-of-service' }
       ]
     },
     {
@@ -50,34 +50,39 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: Linkedin, href: '#' },
-    { icon: Twitter, href: '#' },
-    { icon: Youtube, href: '#' },
-    { icon: Facebook, href: '#' }
-  ];
-
+  { icon: Linkedin, href: 'https://www.linkedin.com/company/echoleadsai/posts/?feedView=all' },
+  { icon: Twitter, href: 'https://x.com/echoleads' },
+  { icon: Instagram, href: 'https://www.instagram.com/echoleadsai/' },
+  { icon: Facebook, href: 'https://www.facebook.com/Echoleads' }
+];
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Logo and Contact */}
           <div className="lg:col-span-1">
-            <Link to="/" className="mb-6 block">
+            {/* <Link to="/" className="mb-6 block">
               <img 
                 src={echoleadsLogo} 
                 alt="EchoLeads.ai" 
                 className="h-12 w-auto"
               />
-            </Link>
+            </Link> */}
             
             <div className="space-y-3 text-gray-300">
               <div>
                 <strong>Email:</strong><br />
-                hello@echoleads.ai
+                <a href="mailto:sales@echoleads.ai" className='text-gray-300 hover:text-[#F2A339] transition-colors'>sales@echoleads.ai</a>
               </div>
               <div>
                 <strong>Phone:</strong><br />
-                1-800-ECHOLEADS
+              <a href="tel:+919000481350" className='text-gray-300 hover:text-[#F2A339] transition-colors'>+91 9000481350</a>
+              </div>
+              <div>
+                <strong>Address:</strong><br />
+                <span className='text-gray-300'>
+                  T-Hub, Plot No 1/C Sy No 83/1, Raidurgam panmaktha Knowledge City, Serilingampally(M), Hyderabad, Telangana, 500081, India.
+                </span>
               </div>
             </div>
 

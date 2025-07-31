@@ -1,6 +1,7 @@
 import React from 'react';
 import { ExternalLink, TrendingUp, Download, Play, ArrowRight, Users, DollarSign, Clock, Target } from 'lucide-react';
 import Button from '../components/Button';
+import { Link } from 'react-router-dom';
 
 const CaseStudies = () => {
   const featuredCases = [
@@ -366,10 +367,14 @@ const CaseStudies = () => {
             Your success story could be next.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg">Get Started</Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-[#2E3192]">
-              Schedule Strategy Call
-            </Button>
+            <Link to="/login">
+              <Button variant="primary" size="lg">Get Started</Button>
+            </Link>
+            <Link to="/contact">
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-[#2E3192]">
+                Schedule Strategy Call
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

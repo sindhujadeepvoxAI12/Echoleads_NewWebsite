@@ -1,14 +1,15 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Building, Shield, Laptop, Heart, DollarSign, ShoppingCart } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Shield, Laptop, Heart, DollarSign, ShoppingCart, Home } from 'lucide-react';
 import Button from '../components/Button';
 
 const IndustryPage = () => {
   const { industry } = useParams();
 
-  const industryData: { [key: string]: any } = {
+  const industryData = {
     'real-estate': {
-      icon: Building,
+      icon: Home,
       title: 'Real Estate',
       description: 'AI agents that never miss a lead and schedule showings 24/7',
       stats: [
@@ -98,9 +99,11 @@ const IndustryPage = () => {
           </div>
 
           <div className="text-center">
-            <Button variant="primary" size="lg">
-              Get Started
-            </Button>
+            <Link to="/contact">
+              <Button variant="primary" size="lg">
+                Get Started
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

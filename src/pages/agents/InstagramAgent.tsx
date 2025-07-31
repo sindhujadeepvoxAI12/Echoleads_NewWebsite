@@ -1,8 +1,34 @@
-import React from 'react';
-import { Instagram, Camera, Heart, BarChart3, Shield, Zap, Users, CheckCircle, ArrowRight, Play } from 'lucide-react';
+import React, { useState } from 'react';
+import { Instagram, Camera, Heart, BarChart3, Shield, Zap, Users, CheckCircle, ArrowRight, Play, Pause } from 'lucide-react';
 import Button from '../../components/Button';
+import gramVideo from '../../assets/InstagramAgent.mp4';
 
 const InstagramAgent = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const [videoRef, setVideoRef] = useState<HTMLVideoElement | null>(null);
+
+  const togglePlay = () => {
+    if (videoRef) {
+      if (isPlaying) {
+        videoRef.pause();
+      } else {
+        videoRef.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleMute = () => {
+    if (videoRef) {
+      videoRef.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  const handleVideoEnded = () => {
+    setIsPlaying(false);
+  };
   const features = [
     {
       icon: Camera,
@@ -216,10 +242,35 @@ const InstagramAgent = () => {
 
             <div className="relative">
               <div className="bg-white rounded-2xl shadow-2xl p-8">
-                <div className="aspect-video bg-gradient-to-br from-[#E4405F] to-[#C13584] rounded-xl flex items-center justify-center mb-6">
-                  <button className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
-                    <Play size={24} className="text-white ml-1" />
-                  </button>
+                <div className="relative aspect-video bg-gradient-to-br from-[#E4405F] to-[#C13584] rounded-xl overflow-hidden mb-6">
+                  <video
+                    ref={setVideoRef}
+                    className="w-full h-full object-cover"
+                    onEnded={handleVideoEnded}
+                    muted={isMuted}
+                    controls
+                  >
+                    <source src={gramVideo} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  <div className="absolute bottom-4 right-4 flex gap-2">
+                    <button 
+                      onClick={toggleMute}
+                      className="w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/70 transition-colors"
+                      title={isMuted ? "Unmute" : "Mute"}
+                    >
+                      {isMuted ? (
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+                        </svg>
+                      ) : (
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                        </svg>
+                      )}
+                    </button>
+                  </div>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Instagram Agent Demo</h3>
                 <p className="text-gray-600 text-sm">Watch how our AI handles Instagram DMs, comments, and lead generation.</p>

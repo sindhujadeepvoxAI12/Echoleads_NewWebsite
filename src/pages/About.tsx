@@ -1,6 +1,7 @@
 import React from 'react';
 import { Users, Target, Award, Globe, Lightbulb, Shield, Zap, Heart } from 'lucide-react';
 import Button from '../components/Button';
+import { Link } from 'react-router-dom';
 
 const About = () => {
   const stats = [
@@ -303,10 +304,14 @@ const About = () => {
             or join our team, we'd love to hear from you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg">Get Started</Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-[#2E3192]">
-              View Careers
-            </Button>
+            <Link to="/login">
+              <Button variant="primary" size="lg">Get Started</Button>
+            </Link>
+            <Link to="/contact">
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-[#2E3192]">
+                Schedule Demo
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

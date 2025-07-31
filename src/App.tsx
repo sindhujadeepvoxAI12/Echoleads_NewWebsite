@@ -4,12 +4,14 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Platform from './pages/Platform';
-import Pricing from './pages/Pricing';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import IndustryPage from './pages/IndustryPage';
 import CaseStudies from './pages/CaseStudies';
+import RefundPolicy from './pages/RefundPolicy';
+import TermsOfService from './pages/TermsOfService';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import ColdCallingAgent from './pages/agents/ColdCallingAgent';
 import CustomerCareAgent from './pages/agents/CustomerCareAgent';
 import WhatsAppAgent from './pages/agents/WhatsAppAgent';
@@ -35,6 +37,9 @@ function App() {
             <Route path="/company/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/refund-policy" element={<RefundPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/industries/:industry" element={<IndustryPage />} />
             <Route path="/resources/case-studies" element={<CaseStudies />} />
             <Route path="/agents/cold-calling" element={<ColdCallingAgent />} />

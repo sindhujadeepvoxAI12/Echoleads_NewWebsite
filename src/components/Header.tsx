@@ -3,10 +3,19 @@ import { Link } from 'react-router-dom';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import Button from './Button';
 import DropdownMenu from './DropdownMenu';
-import echoleadsLogo from '../assets/echoleads_logo.jpeg';
+import echoleadsLogo from '../assets/echoleadslogo.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+  const handleDropdownToggle = (dropdownName: string) => {
+    setActiveDropdown(activeDropdown === dropdownName ? null : dropdownName);
+  };
+
+  const handleDropdownClose = () => {
+    setActiveDropdown(null);
+  };
 
   const platformItems = [
     {
@@ -120,16 +129,42 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
-            <DropdownMenu title="Platform" items={platformItems} />
-            <DropdownMenu title="Industries" items={industriesItems} />
-            <DropdownMenu title="Resources" items={resourcesItems} />
-            <DropdownMenu title="Company" items={companyItems} />
+            <DropdownMenu 
+              title="Platform" 
+              items={platformItems} 
+              isOpen={activeDropdown === 'platform'}
+              onToggle={() => handleDropdownToggle('platform')}
+              onClose={handleDropdownClose}
+            />
+            <DropdownMenu 
+              title="Industries" 
+              items={industriesItems} 
+              isOpen={activeDropdown === 'industries'}
+              onToggle={() => handleDropdownToggle('industries')}
+              onClose={handleDropdownClose}
+            />
+            <DropdownMenu 
+              title="Resources" 
+              items={resourcesItems} 
+              isOpen={activeDropdown === 'resources'}
+              onToggle={() => handleDropdownToggle('resources')}
+              onClose={handleDropdownClose}
+            />
+            <DropdownMenu 
+              title="Company" 
+              items={companyItems} 
+              isOpen={activeDropdown === 'company'}
+              onToggle={() => handleDropdownToggle('company')}
+              onClose={handleDropdownClose}
+            />
             <Link to="/login" className="text-gray-700 hover:text-[#2E3192] transition-colors">
               Log In
             </Link>
-            <Button variant="primary" size="sm">
-              Contact Sales
-            </Button>
+            <Link to="/contact">
+              <Button variant="primary" size="sm">
+                Contact Sales
+              </Button>
+            </Link>
           </nav>
 
           {/* Mobile menu button */}
@@ -151,9 +186,11 @@ const Header = () => {
               <Link to="/login" className="text-gray-700 hover:text-[#2E3192] transition-colors">
                 Log In
               </Link>
-              <Button variant="primary" size="sm" className="w-fit">
-                Contact Sales
-              </Button>
+              <Link to="/contact">
+                <Button variant="primary" size="sm" className="w-fit">
+                  Contact Sales
+                </Button>
+              </Link>
             </div>
           </div>
         )}

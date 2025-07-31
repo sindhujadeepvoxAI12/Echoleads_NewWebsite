@@ -1,6 +1,7 @@
 import React from 'react';
 import { BookOpen, Users, Target, TrendingUp, Clock, CheckCircle, ArrowRight, Download, Play, Star } from 'lucide-react';
 import Button from '../../components/Button';
+import { Link } from 'react-router-dom';
 
 const LearnCenter = () => {
   const guides = [
@@ -375,10 +376,14 @@ const LearnCenter = () => {
             with our expert guidance and support.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg">Get Started</Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-[#2E3192]">
-              Schedule Consultation
-            </Button>
+            <Link to="/login">
+              <Button variant="primary" size="lg">Get Started</Button>
+            </Link>
+            <Link to="/contact">
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-[#2E3192]">
+                Schedule Consultation
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

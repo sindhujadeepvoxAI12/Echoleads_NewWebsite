@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Calculator, TrendingUp, DollarSign, Clock, Users, BarChart3, CheckCircle, ArrowRight } from 'lucide-react';
 import Button from '../../components/Button';
+import { Link } from 'react-router-dom';
 
 const ROICalculator = () => {
   const [inputs, setInputs] = useState({
@@ -279,9 +280,11 @@ const ROICalculator = () => {
                   </div>
                 </div>
 
-                <Button variant="primary" className="w-full">
-                  Get Started with AI Agents
-                </Button>
+                <Link to="/login">
+                  <Button variant="primary" size="lg">
+                    Get Started with AI Agents
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -339,10 +342,14 @@ const ROICalculator = () => {
             Start your implementation today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg">Get Started</Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-[#2E3192]">
-              Schedule Consultation
-            </Button>
+            <Link to="/login">
+              <Button variant="primary" size="lg">Get Started</Button>
+            </Link>
+            <Link to="/contact">
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-[#2E3192]">
+                Schedule Consultation
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from './Button';
+import echoleadsLogo from '../assets/echoleads_logo.jpeg';
 
 const Hero = () => {
   const metrics = [
@@ -25,12 +27,16 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Button variant="primary" size="lg">
-              Get Started
-            </Button>
-            <Button variant="outline" size="lg">
-              Schedule Demo
-            </Button>
+            <Link to="/login">
+              <Button variant="primary" size="lg">
+                Get Started
+              </Button>
+            </Link>
+            <Link to="/contact">
+              <Button variant="outline" size="lg">
+                Schedule Demo
+              </Button>
+            </Link>
           </div>
 
           {/* Key Metrics */}

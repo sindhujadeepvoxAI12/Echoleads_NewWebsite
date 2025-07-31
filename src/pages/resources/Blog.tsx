@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar, Clock, User, Tag, Search, TrendingUp, ArrowRight, BookOpen, Share2 } from 'lucide-react';
 import Button from '../../components/Button';
+import { Link } from 'react-router-dom';
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -437,10 +438,14 @@ const Blog = () => {
             Start your journey with EchoLeads today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg">Get Started</Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-[#2E3192]">
-              Schedule Demo
-            </Button>
+            <Link to="/login">
+              <Button variant="primary" size="lg">Get Started</Button>
+            </Link>
+            <Link to="/contact">
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-[#2E3192]">
+                Schedule Demo
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

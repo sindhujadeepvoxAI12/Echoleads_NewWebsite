@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Clock, MessageSquare, Calendar, Users, Headphones } from 'lucide-react';
 import Button from '../components/Button';
 
@@ -12,6 +12,22 @@ const Contact = () => {
     interest: '',
     message: ''
   });
+
+  useEffect(() => {
+    // Load Calendly script
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      // Cleanup script when component unmounts
+      const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
+      if (existingScript) {
+        document.body.removeChild(existingScript);
+      }
+    };
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,23 +75,12 @@ const Contact = () => {
 
   const offices = [
     {
-      city: 'San Francisco',
-      address: '123 AI Street, San Francisco, CA 94102',
-      phone: '+1 (415) 555-0123',
-      hours: 'Mon-Fri: 9AM-6PM PST'
-    },
-    {
-      city: 'New York',
-      address: '456 Tech Avenue, New York, NY 10001',
-      phone: '+1 (212) 555-0456',
-      hours: 'Mon-Fri: 9AM-6PM EST'
-    },
-    {
-      city: 'London',
-      address: '789 Innovation Lane, London, UK EC1A 1BB',
-      phone: '+44 20 7123 4567',
-      hours: 'Mon-Fri: 9AM-6PM GMT'
+      city: 'Hyderabad',
+      address: 'T-Hub, Plot No 1/C Sy No 83/1, Raidurgam panmaktha Hyderabad Knowledge City, Serilingampally(M), Hyderabad, Telangana, 500081, India.',
+      phone: '+91 9000481350',
+      hours: '24/7 available'
     }
+    
   ];
 
   return (
@@ -126,7 +131,6 @@ const Contact = () => {
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900 mb-1">Email</div>
-                    <div className="text-gray-600">hello@echoleads.ai</div>
                     <div className="text-gray-600">sales@echoleads.ai</div>
                   </div>
                 </div>
@@ -137,8 +141,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900 mb-1">Phone</div>
-                    <div className="text-gray-600">1-800-ECHOLEADS</div>
-                    <div className="text-gray-600">+1 (555) 123-4567</div>
+                    <div className="text-gray-600">+91 9000481350</div>
                   </div>
                 </div>
 
@@ -148,9 +151,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900 mb-1">Business Hours</div>
-                    <div className="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM</div>
-                    <div className="text-gray-600">Saturday: 10:00 AM - 4:00 PM</div>
-                    <div className="text-gray-600">Sunday: Closed</div>
+                    <div className="text-gray-600">24/7 available</div>
+                    
                   </div>
                 </div>
               </div>
@@ -180,149 +182,18 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Contact Form */}
+            {/* Calendly Scheduling Widget */}
             <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Send us a message</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Schedule a Meeting</h2>
+              <p className="text-gray-600 mb-6">
+                Book a 30-minute meeting with our sales team to discuss how EchoLeads can help your business.
+              </p>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F2A339] focus:border-transparent transition-colors"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F2A339] focus:border-transparent transition-colors"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-                      Company *
-                    </label>
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F2A339] focus:border-transparent transition-colors"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F2A339] focus:border-transparent transition-colors"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="employees" className="block text-sm font-medium text-gray-700 mb-2">
-                      Company Size
-                    </label>
-                    <select
-                      id="employees"
-                      name="employees"
-                      value={formData.employees}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F2A339] focus:border-transparent transition-colors"
-                    >
-                      <option value="">Select company size</option>
-                      <option value="1-10">1-10 employees</option>
-                      <option value="11-50">11-50 employees</option>
-                      <option value="51-200">51-200 employees</option>
-                      <option value="201-1000">201-1000 employees</option>
-                      <option value="1000+">1000+ employees</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="interest" className="block text-sm font-medium text-gray-700 mb-2">
-                      Primary Interest
-                    </label>
-                    <select
-                      id="interest"
-                      name="interest"
-                      value={formData.interest}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F2A339] focus:border-transparent transition-colors"
-                    >
-                      <option value="">Select your interest</option>
-                      <option value="cold-calling">Cold Calling Agent</option>
-                      <option value="customer-care">Customer Care Agent</option>
-                      <option value="whatsapp">WhatsApp Agent</option>
-                      <option value="instagram">Instagram Agent</option>
-                      <option value="enterprise">Enterprise Solution</option>
-                      <option value="partnership">Partnership</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Tell us about your business needs and how we can help..."
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F2A339] focus:border-transparent transition-colors"
-                    required
-                  />
-                </div>
-
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="consent"
-                    className="w-4 h-4 text-[#F2A339] border-gray-300 rounded focus:ring-[#F2A339]"
-                    required
-                  />
-                  <label htmlFor="consent" className="ml-2 text-sm text-gray-600">
-                    I agree to receive communications from EchoLeads.ai and understand I can unsubscribe at any time.
-                  </label>
-                </div>
-
-                <Button type="submit" variant="primary" className="w-full">
-                  Send Message
-                </Button>
-              </form>
+              <div 
+                className="calendly-inline-widget" 
+                data-url="https://calendly.com/deepvox-sales/30min"
+                style={{ minWidth: '320px', height: '700px' }}
+              />
             </div>
           </div>
         </div>

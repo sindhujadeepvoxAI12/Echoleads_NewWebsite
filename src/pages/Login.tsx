@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import Button from '../components/Button';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [isSignup, setIsSignup] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Login:', { email, password });
-    // Handle login here
+  const handleRedirect = () => {
+    // Redirect to the actual Echoleads login page
+    window.location.href = 'https://agents.echoleads.ai/login';
+  };
+
+  const handleToggleForm = () => {
+    setIsSignup(!isSignup);
   };
 
   return (
@@ -16,55 +18,49 @@ const Login = () => {
       <div className="max-w-md w-full mx-4">
         <div className="bg-white rounded-2xl shadow-lg p-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
-            <p className="text-gray-600">Sign in to your EchoLeads account</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              {isSignup ? 'Create Account' : 'Welcome Back'}
+            </h1>
+            <p className="text-gray-600">
+              {isSignup ? 'Sign up for your Echoleads account' : 'Sign in to your EchoLeads account'}
+            </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F2A339] focus:border-transparent"
-                required
-              />
+          <div className="space-y-6">
+            <div className="text-center">
+              <p className="text-gray-600 mb-6">
+                {isSignup 
+                  ? 'Create your Echoleads account to get started with AI-powered lead generation'
+                  : 'Access your Echoleads dashboard to manage your AI agents and campaigns'
+                }
+              </p>
             </div>
 
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F2A339] focus:border-transparent"
-                required
-              />
-            </div>
-
-            <Button type="submit" variant="primary" className="w-full">
-              Sign In
+            <Button 
+              onClick={handleRedirect} 
+              variant="primary" 
+              className="w-full"
+            >
+              {isSignup ? 'Create Account' : 'Sign In to Dashboard'}
             </Button>
-          </form>
-
-          <div className="mt-6 text-center">
-            <a href="#" className="text-[#F2A339] hover:text-[#D88D26] text-sm">
-              Forgot your password?
-            </a>
           </div>
 
           <div className="mt-6 text-center">
-            <span className="text-gray-600 text-sm">Don't have an account? </span>
-            <a href="#" className="text-[#F2A339] hover:text-[#D88D26] text-sm font-medium">
-              Get Started
-            </a>
+            <span className="text-gray-600 text-sm">
+              {isSignup ? 'Already have an account? ' : "Don't have an account? "}
+            </span>
+            <button
+              onClick={handleToggleForm}
+              className="text-[#F2A339] hover:text-[#D88D26] text-sm font-medium"
+            >
+              {isSignup ? 'Sign In' : 'Get Started'}
+            </button>
+          </div>
+
+          <div className="mt-4 text-center">
+            <p className="text-xs text-gray-500">
+              You will be redirected to the Echoleads Agents dashboard
+            </p>
           </div>
         </div>
       </div>

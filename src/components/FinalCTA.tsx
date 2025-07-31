@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from './Button';
 
 const FinalCTA = () => {
@@ -14,12 +15,16 @@ const FinalCTA = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button variant="primary" size="lg">
-            Get Started
-          </Button>
-          <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-[#2E3192]">
-            Talk to Sales
-          </Button>
+          <Link to="/login">
+            <Button variant="primary" size="lg">
+              Get Started
+            </Button>
+          </Link>
+          <Link to="/contact">
+            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-[#2E3192]">
+              Talk to Sales
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
